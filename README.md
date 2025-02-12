@@ -5,6 +5,6 @@ This project (Open-Sourced-LUA) is used to learn off of to learn lua easier! you
 
 I am currently an admin at RScripts.net and owned several scripts!
 
-Admin & Verified on: https://rscripts.net/@deposible
-Scriptblox Verified: https://scriptblox.com/u/deposible
-Aussie WIRE (personal script): https://discord.gg/aussiestudios
+- Admin & Verified on: https://rscripts.net/@deposible
+- Scriptblox Verified: https://scriptblox.com/u/deposible
+- Aussie WIRE (personal script): https://discord.gg/aussiestudios

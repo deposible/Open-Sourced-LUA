@@ -1,0 +1,122 @@
+getgenv().Settings = {
+  ["Grab Cash"] = true,
+  ["Auto Buy Next"] = true,
+  ["Buy Next Account"] = true,
+  ["Auto Rebirth"] = true,
+  ["Rob All Players"] = true,
+  ["+100 Upgrades (Rebirth)"] = true,
+}
+
+if AlreadyRan then return end
+getgenv().AlreadyRan = true
+
+print'A Deposible Product'
+
+local GrabBase = function()
+    for _, a in pairs(workspace.Plots:GetChildren()) do
+        if tostring(a.Owner.Value) == game.Players.LocalPlayer.Name then
+            return a
+        end
+    end
+end
+local HighestAvailable = function()
+    local Base = GrabBase()
+    local T, N = false, math.huge
+
+    for _, a in pairs(Base.Upgrades:GetChildren()) do
+        if a:IsA('Part') and a.CFrame.Position.Y > 0 and tonumber(a.Name) < tonumber(N) then
+            N = a.Name
+            T = a
+        end
+    end
+
+    return T
+end
+local newtask = function(f, d)
+  task.spawn(function()
+    while task.wait(d) do
+      pcall(f)
+    end
+  end)
+end
+local fti = function(a, b)
+  firetouchinterest(a, b, 0)
+  firetouchinterest(a, b, 1)
+end)
+newtask(function()
+  if Settings["Grab Cash"] then
+    local Base = GrabBase()
+  
+    fti(LocalPlayer.Character.PrimaryPart, Base.MoneyCollecter.Collect)
+  end
+  if Settings["Rob All Players"] then
+    local Plot = GrabBase()
+
+    for _, a in pairs(workspace.Plots:GetChildren()) do
+        if a.Owner.Value and tostring(a.Owner.Value) ~= LocalPlayer.Name then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = a.Door.Interactive.CFrame
+            task.wait(0.1)
+            fireproximityprompt(a.Door.Interactive.ProximityPrompt)
+            task.wait(0.25)
+            for i = 1, 4 do
+                local gold = false
+
+                for _, b in pairs(a.Robables:GetChildren()) do
+                    if b.Name == "Gold" and b:FindFirstChildWhichIsA('MeshPart') and b:FindFirstChildWhichIsA('MeshPart').Transparency ~= 1 then
+                        gold = b
+                        break
+                    end
+                end
+                
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = gold:GetPivot()
+
+                task.wait(0.25)
+
+                for _, b in pairs(gold:GetChildren()) do
+                    if b.Name == "Meshes/bar" and b:FindFirstChildWhichIsA('ProximityPrompt') then
+                        -- fire Enum.KeyCode.E [REDACTED]
+
+                        break
+                    end
+                end
+
+                task.wait(0.1)
+            end
+
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Plot.Collect.CFrame
+            task.wait(0.25)
+            fti(LocalPlayer.Character.HumanoidRootPart, Plot.Collect)
+            task.wait(1)
+        end
+    end
+  end
+end, 1)
+newtask(function()
+  if Settings["Auto Buy Next"] then
+    local P = HighestAvailable()
+
+    game.ReplicatedStorage.Events.BuyEvent:FireServer(P)
+    task.wait(0.1)
+  end
+end, 0.2)
+newtask(function()
+  if Settings["Buy Next Account"] then
+    local Account = workspace.AccountDummys:FindFirstChild('AccountDummy')
+  
+    game.PlayersLocalPlayer.Character.HumanoidRootPart.CFrame = Account:GetPivot()
+    task.wait(0.1)
+    --fire key press event (REDACTED) -- Enum.KeyCode.E
+  end
+  if Settings["+100 Upgrades (Rebirth)"] then
+    for i = 1, 100 do
+          local Base = GrabBase()
+          game.ReplicatedStorage.Events.BuyEvent:FireServer(Base.Upgrades["1"])
+          task.wait(0.05)
+      end
+  end
+end, 30)
+newtask(function()
+  if Settings["Auto Rebirth"] then
+    game.ReplicatedStorage.Events.RebirthEvent:FireServer()
+  end
+end, 5)

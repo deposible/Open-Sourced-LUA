@@ -9,7 +9,8 @@ getgenv().Settings = {
     BoatRarities = {"Epic","Legendary","Secret"}
 }
 
-if Settings then return end
+if AlreadyLoaded then return end
+getgenv().AlreadyLoaded = true
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer

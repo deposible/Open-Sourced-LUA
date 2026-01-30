@@ -1,5 +1,5 @@
 -- This code was generated using chatgpt of previous version of my code as i am not recoding this massive pile for a game i have discontinued.
-
+-- This game is also completely dog shit. basically just a reskin of their goated game. its just a cash grab people. please stop using it.
 getgenv().Settings = getgenv().Settings or {
     AutoTrickOrTreat = false,
     BlowBubbles = false,

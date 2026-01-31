@@ -5,6 +5,5 @@ This project (Open-Sourced-LUA) is used to learn off of to learn lua easier! you
 
 - Verified on: https://rscripts.net/@deposible
 - Scriptblox Verified: https://scriptblox.com/u/deposible
-- Aussie WIRE (personal script): https://discord.gg/aussiewire
-- Official Website: https://aussie.productions
+- WIREC Community (discord.gg/d3wyWasvc7)
 - Personal Website: https://deposible.xyz
